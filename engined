@@ -85,7 +85,11 @@ def route_gc():
 
 @app.route('/config/nginx')
 def route_nginx():
-    return load_nginx_conf()
+    n =  load_nginx_conf()
+    c = ''
+    for i in n:
+        c = c + n
+    return c
 
 if __name__ == '__main__':
     load_config()
