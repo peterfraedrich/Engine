@@ -76,8 +76,8 @@ def gen_auth_key():
 
 @app.route('/debug', methods=['POST', 'GET'])
 def debug():
-    print request
-    return request
+    print request.data
+    return request.data
 
 
 if __name__ == '__main__':
