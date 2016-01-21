@@ -7,11 +7,13 @@ import argparse
 from flask import Flask, request
 import uuid
 import json
+from pynginxconfig import NginxConfig
 
 ######################################### SETUP
 
 # initiate app as Flask() instance
 app = Flask(__name__)
+nginx = NginxConfig()
 
 # def global vars
 gc = {} # global config from configparser
@@ -72,24 +74,21 @@ def gen_auth_key():
 
 ######################################### LOGIC
 def load_nginx_conf():
-    n = open(gc['nginx_conf'], 'r')
-    c = n.readlines()
-    n.close()
+    f = open('nginx.conf')
+    n = f.readlines()
+    c = ''
+    for i in n:
+        c = c + i.strip('\n')
     return c
 
 ######################################### ROUTES
-
 @app.route('/config/api')
 def route_gc():
     return json.dumps(gc, indent=4)
 
 @app.route('/config/nginx')
 def route_nginx():
-    n =  load_nginx_conf()
-    c = ''
-    for i in n:
-        c = c + i
-    return c
+    return load_nginx_conf()
 
 if __name__ == '__main__':
     load_config()
