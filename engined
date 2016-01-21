@@ -72,14 +72,18 @@ def gen_auth_key():
         fr.write(config_file)
     return
 
+def conf_to_string(path):
+    f = open(path, 'r')
+    l = f.readlines()
+    c = ''
+    for i in l:
+        c = c + l
+    return c
+
 ######################################### LOGIC
 def load_nginx_conf():
-    f = open('nginx.conf')
-    n = f.readlines()
-    c = ''
-    for i in n:
-        c = c + i.strip('\n')
-    return c
+    nginx.load(conf_to_string(gc['nginx_conf']))
+
 
 ######################################### ROUTES
 @app.route('/config/api')
@@ -89,6 +93,15 @@ def route_gc():
 @app.route('/config/nginx')
 def route_nginx():
     return load_nginx_conf()
+
+@app.route('/upstream/add/<stream>')
+def route_add():
+    try:
+        auth_key = request.args.get('auth_key')
+        server = request.args.get('server')
+    except Exception as e:
+        return 'Missing parameters! Could not add host to upstream pool.'
+    return '['+auth_key+','+server+']'
 
 if __name__ == '__main__':
     load_config()
