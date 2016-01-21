@@ -71,15 +71,21 @@ def gen_auth_key():
     return
 
 ######################################### LOGIC
-
-
+def load_nginx_conf():
+    n = open(gc['nginx_conf'], 'r')
+    c = n.readlines()
+    n.close()
+    return c
 
 ######################################### ROUTES
 
-@app.route('/gc')
+@app.route('/config/api')
 def route_gc():
     return json.dumps(gc, indent=4)
 
+@app.route('/config/nginx')
+def route_nginx():
+    return load_nginx_conf()
 
 if __name__ == '__main__':
     load_config()
