@@ -74,7 +74,7 @@ def gen_auth_key():
 
 ######################################### ROUTES
 
-@app.route('/debug', methods=['POST'])
+@app.route('/debug', methods=['POST', 'GET'])
 def debug():
     print request
     return request
