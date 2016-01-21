@@ -1,8 +1,13 @@
 #!/usr/bin/python
-
+from os import path
+from os import rename
+from datetime import datetime as dt
 import ConfigParser
 import argparse
 from flask import Flask
+import uuid
+
+######################################### SETUP
 
 # initiate app as Flask() instance
 app = Flask(__name__)
@@ -10,8 +15,74 @@ app = Flask(__name__)
 # def global vars
 gc = {} # global config from configparser
 
-def load_config(gc):
-    config = ConfigParser.ConfigParser()
+# simple timestamp in string format
+def ts():
+    # timestamp
+    return dt.now().strftime('%Y/%m/%d %H:%M:%S.%f')
+
+# logging function
+def log(msg, code, err=' '):
+    # first run
+    if str(gc['firstrun']) == '1':
+        f = open(gc['logpath'], 'w')
+        f.write(ts() + ' :: 000 :: Initialized the log file.\n')
+        f.close()
+
+    # log rotate
+    if path.getsize(gc['logpath']) >= 6553600:
+        new_path = gc['logpath'], gc['logpath'] + '.' + ts()
+        rename(new_path)
+        f = open(gc['logpath'], 'w')
+        f.write('Rotated the logs. Archive log at ' + new_path + '\n')
+        f.close()
+    # logger
+    f = open(gc['logpath'], 'a')
+    log_msg = ts() + ' :: ' + code + ' :: ' + msg + '[' + err + ']\n'
+    f.write(log_msg)
+    f.close()
+    return
+
+def firstrun():
+    gen_auth_key()
+    log('Generated auth key.', '000')
+    return
+
+# load the global config from the engine.conf
+def load_config():
+    config = ConfigParser.ConfigParser(allow_no_value=True)
     config.read('/etc/engine/engine.conf')
     gc['firstrun'] = config.get('engined', 'firstrun')
-    gc['log_path'] = config.get('engined', 'logpath')
+    gc['logpath'] = config.get('engined', 'logpath')
+    gc['authkey'] = config.get('global', 'auth_key')
+    return
+
+# create random string for our lazy authorization token
+def gen_auth_key():
+    t = uuid.uuid4()
+    key = str(t).split('-')
+    keyLong = key[0] + key[1] + key[2] + key[3] + key[4]
+    fr = ConfigParser.ConfigParser(allow_no_value=True)
+    fr.read('/etc/engine/engine.conf')
+    fr.set('global', 'auth_key', keyLong[-8:])
+    with open('/etc/engine/engine.conf', 'wb') as config_file:
+        fr.write(config_file)
+    return
+
+######################################### LOGIC
+
+
+
+######################################### ROUTES
+
+@app.route('/debug', methods=['POST'])
+def debug():
+    print request
+    return request
+
+
+if __name__ == '__main__':
+    load_config()
+    if str(gc['firstrun']) = '1':
+        firstrun()
+    app.debug = True
+    app.run(host='0.0.0.0', port='5000')
