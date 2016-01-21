@@ -4,7 +4,7 @@ from os import rename
 from datetime import datetime as dt
 import ConfigParser
 import argparse
-from flask import Flask
+from flask import Flask, request
 import uuid
 
 ######################################### SETUP
