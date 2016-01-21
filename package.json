@@ -1,0 +1,32 @@
+{
+  "name": "Engine",
+  "version": "1.0.0",
+  "description": "a REST API for nginx ",
+  "main": "engined.js",
+  "scripts": {
+    "test": "nodemon engined.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/peterfraedrich/Engine.git"
+  },
+  "keywords": [
+    "nginx",
+    "rest",
+    "api"
+  ],
+  "author": "Peter Fraedrich",
+  "license": "GNU GPLv3",
+  "bugs": {
+    "url": "https://github.com/peterfraedrich/Engine/issues"
+  },
+  "dependencies": {
+    "nginx-conf": "~1.1.0",
+    "ini": "~1.3.4",
+    "method-override": "~2.3.5",
+    "connect": "~3.4.0",
+    "errorhandler": "~1.4.3",
+    "express": "~4.13.3",
+    "body-parser": "~1.14.2"
+  }
+}
