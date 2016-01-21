@@ -95,7 +95,7 @@ def route_nginx():
     return load_nginx_conf()
 
 @app.route('/upstream/add/<stream>')
-def route_add():
+def route_add(stream):
     try:
         auth_key = request.args.get('auth_key')
         server = request.args.get('server')
