@@ -88,7 +88,7 @@ def route_nginx():
     n =  load_nginx_conf()
     c = ''
     for i in n:
-        c = c + n
+        c = c + i
     return c
 
 if __name__ == '__main__':
