@@ -57,7 +57,7 @@ def load_config():
     gc['firstrun'] = config.get('engined', 'firstrun')
     gc['logpath'] = config.get('engined', 'logpath')
     gc['authkey'] = config.get('global', 'auth_key')
-    gc['nginx_conf'] = config.get('engined', 'nginx_conf')
+    gc['nginx_conf'] = config.get('global', 'nginx_conf')
     return
 
 # create random string for our lazy authorization token
