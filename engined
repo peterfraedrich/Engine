@@ -1,0 +1,17 @@
+#!/usr/bin/python
+
+import ConfigParser
+import argparse
+from flask import Flask
+
+# initiate app as Flask() instance
+app = Flask(__name__)
+
+# def global vars
+gc = {} # global config from configparser
+
+def load_config(gc):
+    config = ConfigParser.ConfigParser()
+    config.read('/etc/engine/engine.conf')
+    gc['firstrun'] = config.get('engined', 'firstrun')
+    gc['log_path'] = config.get('engined', 'logpath')
