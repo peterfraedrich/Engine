@@ -20,7 +20,7 @@ All HTTP hooks are `GET`. I know, I know, this is a bit unorthodox, but it was d
 All hooks are in the format of `http://someurl/<api>?param=value&param=value`.
 
 Valid params (query) values are as follows:
-```javascript
+```ini
 key=<key>                   // your API key, an 8-character string
 upstream=<upstream_name>    // the name of the upstream pool from nginx.conf
 server=<server_IP_or_FQDN>  // the server IP or FQDN to instert into the pool
@@ -42,3 +42,24 @@ Valid API hooks are as follows (as of right now, more later):
 Each server, on first-run, generates an 8-character key based on an UUID. This is to keep unauthorized scripts/people from updating the configuration files. This is what I'm calling 'lazy authentication'. If someone *really* wants to get past it, they could, but this way keeps the casual interloper from f---ing everything up. The key **must** be supplied with all queries (except `/api`) else you will get an error message.
 
 The API key can be found in the `engine.conf` or `engined.log` files.
+
+### Examples
+For the purpose of these examples, assume that your `nginx.conf` looks something like this:
+```Nginx
+user www
+http {
+    upstream loginservice {
+        least conn;
+        server 10.10.10.1;
+        server 10.10.10.2;
+        server 10.10.10.3;
+    }
+    upstream database {
+        server 172.16.10.1;
+        server 172.16.10.2;
+    }
+    location / {
+        proxy_pass http://backend;
+    }
+}
+```
