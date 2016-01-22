@@ -44,7 +44,7 @@ Each server, on first-run, generates an 8-character key based on an UUID. This i
 The API key can be found in the `engine.conf` or `engined.log` files.
 
 ### Examples
-For the purpose of these examples, assume that your `nginx.conf` looks something like this:
+For the purpose of these examples, assume that the nginx server is as `nginx01.foo.com` and your `nginx.conf` looks something like this:
 ```Nginx
 user www
 http {
@@ -59,7 +59,27 @@ http {
         server 172.16.10.2;
     }
     location / {
-        proxy_pass http://backend;
+        proxy_pass http://gateway.bar.com;
     }
 }
+```
+
+##### Adding a server to an upstream pool
+```c++
+Server to add:          10.10.10.4
+Pool to add to:         loginservice
+API key:                abcd1234
+
+Command:
+$> curl http://nginx01.foo.com/pool/add?key=abcd1234&upstream=loginservice&server=10.10.10.4
+```
+
+##### Deleting a server from an upstream pool
+```c++
+Server to delete:       172.16.10.2
+Pool to delete from:    database
+API key:                abcd1234
+
+Command:
+$> curl http://nginx01.foo.com/pool/delete?key=abcd1234&upstream=database&server=172.16.10.2
 ```
