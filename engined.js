@@ -198,7 +198,11 @@ var pool_list = function (stream, callback) {
 ////////////////////////////////////////////////////////// PUBLIC API
 
 app.get('/api', function (req, res) {
-    res.send('SERVER IS UP')
+    if (req.query.robot == undefined) {
+        res.send('SERVER IS UP')
+    } else {
+        res.sendStatus(200)
+    }    
 })
 
 app.get('/config/engine', function (req, res) {
