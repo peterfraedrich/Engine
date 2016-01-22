@@ -75,6 +75,7 @@ API key:                abcd1234
 
 Command:
 $> curl http://nginx01.foo.com/pool/add?key=abcd1234&upstream=loginservice&server=10.10.10.4
+[OK] Engine added 10.10.10.4 to the pool loginservice
 ```
 
 ##### Deleting a server from an upstream pool
@@ -85,4 +86,24 @@ API key:                abcd1234
 
 Command:
 $> curl http://nginx01.foo.com/pool/delete?key=abcd1234&upstream=database&server=172.16.10.2
+[OK] Engine deleted 172.16.10.2 from the pool database
+```
+
+##### Fetching upstream pool members
+```
+Pool to fetch:          loginservice
+API key:                abcd1234
+
+Command:
+$> curl http://nginx01.foo.com/pool/list?upstream=loginservice&key=abcd1234
+```
+```JSON
+{
+    "members" : [
+        "10.10.10.1",
+        "10.10.10.2",
+        "10.10.10.3"
+    ],
+    "upstream" : "loginservice"
+}
 ```
