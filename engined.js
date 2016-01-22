@@ -202,7 +202,7 @@ app.get('/api', function (req, res) {
         res.send('SERVER IS UP')
     } else {
         res.sendStatus(200)
-    }    
+    }
 })
 
 app.get('/config/engine', function (req, res) {
@@ -314,7 +314,7 @@ app.get('/pool/list', function (req, res) {
                     if (req.query.robot == undefined) {
                         res.send(data)
                     } else {
-                        res.sendStatus(200)
+                        res.send(data)
                     }
                 }
             })

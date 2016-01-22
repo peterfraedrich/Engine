@@ -97,6 +97,7 @@ API key:                abcd1234
 Command:
 $> curl http://nginx01.foo.com/pool/list?upstream=loginservice&key=abcd1234
 ```
+Returns:
 ```JSON
 {
     "members" : [
@@ -107,3 +108,15 @@ $> curl http://nginx01.foo.com/pool/list?upstream=loginservice&key=abcd1234
     "upstream" : "loginservice"
 }
 ```
+
+##### Misc. Notes
+* The `robot` URL query parameter tells the API to return confirmations in the form of HTTP status codes (ie, `200` for sucess) instead of text. This is designed to be used with scripts to avoid having to parse a text response.
+* You can send extra query params, but they won't do anything.
+
+#### FAQ
+* Do you intend on implementing HTTPS any time soon?
+`No, not really. I personally don't see the need, but if there's great outcry then I could change my stance.`
+* Why send API keys in plaintext?
+`Because. Really, though, all it's there to do is ensure something like a URL scanner or the intern don't mess things up.`
+* Is this it?
+`No, jerk, this isn't all I'm doing. I'm working on the rest of the crap too. But, you know, I have a day job.`
