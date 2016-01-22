@@ -65,7 +65,7 @@ http {
 ```
 
 ##### Adding a server to an upstream pool
-```c++
+```
 Server to add:          10.10.10.4
 Pool to add to:         loginservice
 API key:                abcd1234
@@ -75,7 +75,7 @@ $> curl http://nginx01.foo.com/pool/add?key=abcd1234&upstream=loginservice&serve
 ```
 
 ##### Deleting a server from an upstream pool
-```c++
+```
 Server to delete:       172.16.10.2
 Pool to delete from:    database
 API key:                abcd1234
