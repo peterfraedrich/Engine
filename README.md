@@ -58,8 +58,11 @@ http {
         server 172.16.10.1;
         server 172.16.10.2;
     }
-    location / {
-        proxy_pass http://gateway.bar.com;
+    location /db {
+        proxy_pass http://database;
+    }
+    location /login {
+        proxy_pass http://loginservice;
     }
 }
 ```
