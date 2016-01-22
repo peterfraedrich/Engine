@@ -22,19 +22,19 @@ All hooks are in the format of `http://someurl/<api>?params=values`.
 
 Valid params (query) values are as follows:
 ```javascript
-key=[api_key]
-upstream=[the upstream pool]
-server=[the server youre referencing]
-robot // tells the API to return HTTP/200 responses instead of text, useful for scripts
+key=<key>                   // your API key, an 8-character string
+upstream=<upstream_name>    // the name of the upstream pool from nginx.conf
+server=<server_IP_or_FQDN>  // the server IP or FQDN to instert into the pool
+robot                       // tells the API to return HTTP/200 responses instead of text, useful for scripts
 ```
 
 Valid API hooks are as follows (as of right now, more later):
-```javascript
-/api                    // gets the server status, returns 'SERVER IS UP' or 200
-/config/engine          // returns the current server configuration in JSON
-/config/nginx           // returns the NGINX configuration
-/config/log             // returns the log file
-/pool/add               // adds a server to an upstream pool
-/pool/delete            // removes a server from an upstream pool
-/pool/list              // returns all servers in an upstream pool as JSON
+```c++
+/api                        // gets the server status, returns 'SERVER IS UP' or 200
+/config/engine              // returns the current server configuration in JSON
+/config/nginx               // returns the NGINX configuration
+/config/log                 // returns the log file
+/pool/add                   // adds a server to an upstream pool
+/pool/delete                // removes a server from an upstream pool
+/pool/list                  // returns all servers in an upstream pool as JSON
 ```
