@@ -27,6 +27,7 @@
     "connect": "~3.4.0",
     "errorhandler": "~1.4.3",
     "express": "~4.13.3",
-    "body-parser": "~1.14.2"
+    "body-parser": "~1.14.2",
+    "node-uuid": "~1.4.7"
   }
 }
