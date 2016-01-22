@@ -39,6 +39,6 @@ Valid API hooks are as follows (as of right now, more later):
 ```
 
 #### API key
-Each server, on first-run, generates an 8-character key based on an UUID. This is to keep unauthorized scripts/people from updating the configuration files. This is what I'm calling 'lazy authentication'. If someone *really* wants to get past it, they could, but this way keeps the casual interloper from f****ing everything up. The key **must** be supplied with all queries (except `/api`) else you will get an error message.
+Each server, on first-run, generates an 8-character key based on an UUID. This is to keep unauthorized scripts/people from updating the configuration files. This is what I'm calling 'lazy authentication'. If someone *really* wants to get past it, they could, but this way keeps the casual interloper from f---ing everything up. The key **must** be supplied with all queries (except `/api`) else you will get an error message.
 
 The API key can be found in the `engine.conf` or `engined.log` files.
