@@ -121,11 +121,16 @@ var pool_add = function (stream, server, callback) {
         for (i=0; i < config.nginx.http.upstream.length; i++) {
             if (config.nginx.http.upstream[i]._value == stream) {
                 // check to see if its already in the stream
-                for (v = 0; v < config.nginx.http.upstream[i].server.length; v++) {
-                    if (config.nginx.http.upstream[i].server[v]._value == server) {
-                        callback(new Error(server + ' already exists in upstream pool ' + stream))
-                        return
+                try {
+                    for (v = 0; v < config.nginx.http.upstream[i].server.length; v++) {
+                        if (config.nginx.http.upstream[i].server[v]._value == server) {
+                            callback(new Error(server + ' already exists in upstream pool ' + stream))
+                            return
+                        }
                     }
+                }
+                catch (e) {
+                    // catch exception because server object has no .length if its empty
                 }
                 // if it doesn't exist, then push it to the config
                 config.nginx.http.upstream[i]._add('server', server)
@@ -195,6 +200,43 @@ var pool_list = function (stream, callback) {
         return
     })
 }
+
+var upstream_create = function (stream, callback) {
+    NginxConfFile.create(gc.global.nginx_conf, function (err, config) {
+        if (err) {
+            _err(req, err, function (err, msg) {
+                return callback(err)
+            })
+        } else {
+            config.nginx.http._add('upstream', stream)
+            config.flush()
+            return callback(null)
+        }
+    })
+}
+
+var upstream_destroy = function (stream, callback) {
+    NginxConfFile.create(gc.global.nginx_conf, function (err, config) {
+        if (err) {
+            _err(req, err, function (err, msg) {
+                return callback(err)
+            })
+        } else {
+            for (i = 0; i < config.nginx.http.upstream.length; i++) {
+                if (config.nginx.http.upstream[i]._value == stream) {
+                    config.nginx.http._remove('upstream', i)
+                    config.flush()
+                    return callback(null)
+                }
+            }
+            return callback(new Err('Stream ' + stream + ' does not exist on this server.'))
+        }
+    })
+}
+
+
+
+
 ////////////////////////////////////////////////////////// PUBLIC API
 
 app.get('/api', function (req, res) {
@@ -315,6 +357,54 @@ app.get('/pool/list', function (req, res) {
                         res.send(data)
                     } else {
                         res.send(data)
+                    }
+                }
+            })
+        }
+    })
+})
+
+app.get('/upstream/create', function (req, res) {
+    check_auth_key(req.query.key, function (err) {
+        if (err) {
+            _err(req, err, function (err, msg) {
+                res.send(msg)
+            })
+        } else {
+            upstream_create(req.query.upstream, function (err) {
+                if (err) {
+                    _err(req, err, function (err, msg) {
+                        res.send(msg)
+                    })
+                } else {
+                    if (req.query.robot == undefined) {
+                        res.send('[OK] Engine created new upstream pool ' + req.query.upstream )
+                    } else {
+                        res.send(200)
+                    }
+                }
+            })
+        }
+    })
+})
+
+app.get('/upstream/destroy', function (req, res) {
+    check_auth_key(req.query.key, function (err) {
+        if (err) {
+            _err(req, err, function (err, msg) {
+                res.send(msg)
+            })
+        } else {
+            upstream_destroy(req.query.upstream, function (err) {
+                if (err) {
+                    _err(req, err, function (err, msg) {
+                        res.send(msg)
+                    })
+                } else {
+                    if (req.query.robot == undefined) {
+                        res.send('[OK] Engine destroyed the upstream pool' + req.query.upstream )
+                    } else {
+                        res.send(200)
                     }
                 }
             })

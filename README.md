@@ -36,6 +36,8 @@ Valid API hooks are as follows (as of right now, more later):
 /pool/add                   // adds a server to an upstream pool
 /pool/delete                // removes a server from an upstream pool
 /pool/list                  // returns all servers in an upstream pool as JSON
+/upstream/create            // creates a new upstream pool
+/upstream/destroy           // destroys an upstream pool and all of its children
 ```
 
 #### API key

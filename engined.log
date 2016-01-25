@@ -1,2 +1,14 @@
 
 {"timestamp":"Thu Jan 21 2016 19:49:23 GMT-0500 (EST)","code":"000","message":"Completed first-run tasks. Auth key is 994e049a8","err":" "}
+{"timestamp":"Mon Jan 25 2016 16:25:22 GMT-0500 (EST)","code":"000","message":"Completed first-run tasks. Auth key is 2a435d913","err":" "}
+{"timestamp":"Mon Jan 25 2016 16:26:25 GMT-0500 (EST)","code":"666","message":"Attempted authentication with auth key undefined"}
+{"timestamp":"Mon Jan 25 2016 16:26:25 GMT-0500 (EST)","code":"999","message":"Hey, you can't do that, man! You don't have the right authorization key.","err":" "}
+{"timestamp":"Mon Jan 25 2016 16:32:02 GMT-0500 (EST)","code":"100","message":"Added server 192.168.100.100 to upsream pool testing","err":" "}
+{"timestamp":"Mon Jan 25 2016 16:32:13 GMT-0500 (EST)","code":"100","message":"Added server 192.168.100.100 to upsream pool testing","err":" "}
+{"timestamp":"Mon Jan 25 2016 16:32:17 GMT-0500 (EST)","code":"999","message":"192.168.100.100 already exists in upstream pool testing","err":" "}
+{"timestamp":"Mon Jan 25 2016 16:32:40 GMT-0500 (EST)","code":"999","message":"192.168.100.100 doesn't exist in upstream pool testing","err":" "}
+{"timestamp":"Mon Jan 25 2016 16:32:45 GMT-0500 (EST)","code":"999","message":"192.168.100.100 doesn't exist in upstream pool testing","err":" "}
+{"timestamp":"Mon Jan 25 2016 16:34:37 GMT-0500 (EST)","code":"100","message":"Added server 192.168.100.100 to upsream pool scout","err":" "}
+{"timestamp":"Mon Jan 25 2016 16:34:45 GMT-0500 (EST)","code":"100","message":"Added server 192.168.100.101 to upsream pool scout","err":" "}
+{"timestamp":"Mon Jan 25 2016 16:34:54 GMT-0500 (EST)","code":"999","message":"192.168.100.100 doesn't exist in upstream pool scout","err":" "}
+{"timestamp":"Mon Jan 25 2016 16:41:05 GMT-0500 (EST)","code":"100","message":"Added server 192.168.101.101 to upsream pool something","err":" "}
