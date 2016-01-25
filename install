@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# run as root
+if [ $USERNAME != 'root' ]; then
+    printf 'You must be root!'
+fi
+
+APP_DIR=/etc/engine
+
+mkdir $APP_DIR
+
+cp engine.js $APP_DIR/.
+cp package.json $APP_DIR/.
+cp LICENSE $APP_DIR/.
+cp README.md $APP_DIR/.
+cp ./os_bin/* /usr/lib/systemd/system/scoutd.service || printf 'systemd not found, create your own init file!'
+
+touch $APP_DIR/engine.conf
+echo '[global]' > $APP_DIR/engine.conf
+echo 'auth_key=' >> $APP_DIR/engine.conf
+echo 'nginx_conf=/etc/nginx/nginx.conf' >> $APP_DIR/engine.conf
+echo 'api_port=5000' >> $APP_DIR/engine.conf
+echo '' >> $APP_DIR/engine.conf
+echo '[engined]' >> $APP_DIR/engine.conf
+echo 'firstrun=1' >> $APP_DIR/engine.conf
+echo 'logpath=/var/log/engined.log' >> $APP_DIR/engine.conf
+echo '' >> $APP_DIR/engine.conf
+echo '[enginectl]' >> $APP_DIR/engine.conf
+echo 'firstrun=1' >> $APP_DIR/engine.conf
+echo 'logpath=engin' >> $APP_DIR/engine.conf
+
+touch /var/log/engined.log
+echo '' > /var/log/engined.log
+
+printf 'Completed install.'
+printf 'To enable: systemctl enable engined'
+printf 'To start: systemcl start engined'
