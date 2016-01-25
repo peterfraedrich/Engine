@@ -35,7 +35,7 @@ touch /var/log/engined.log
 echo '' > /var/log/engined.log
 
 cd $APP_DIR
-npm install || printf 'npm not installed, this will not work!' && exit 1
+npm install || exit 1
 
 printf 'Completed install.'
 printf 'To enable: systemctl enable engined'
