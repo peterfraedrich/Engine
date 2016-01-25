@@ -1,4 +1,4 @@
-![Engine](https://www.dropbox.com/s/my2n9rreanqod67/ENGINE_LOGO.png?dl=0)
+![Engine](https://www.dropbox.com/s/my2n9rreanqod67/ENGINE_LOGO.png)
 
 #### So what does it do?
 I'm glad you asked. It does...stuff. No, actually it's a REST API for nginx load balancer configurations. I made it because a) I'm an operations guy that needs to dynamically update nginx load balancer configurations, and b) because no one else had made one.
