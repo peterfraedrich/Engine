@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # run as root
-if [ $USERNAME != 'root' ]; then
+if [ $USER != 'root' ]; then
     printf 'You must be root!'
 fi
 
