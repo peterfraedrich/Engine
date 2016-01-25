@@ -5,7 +5,7 @@ if [ $USER != 'root' ]; then
     printf 'You must be root!'
 fi
 
-node -e "console.log('node installed, continuing...')" || printf 'node is not installed, this will not work!' && exit 1
+node -e "console.log('node installed, continuing...')" || exit 1
 
 APP_DIR=/etc/engine
 
@@ -15,7 +15,7 @@ cp engine.js $APP_DIR/.
 cp package.json $APP_DIR/.
 cp LICENSE $APP_DIR/.
 cp README.md $APP_DIR/.
-cp ./os_bin/* /usr/lib/systemd/system/scoutd.service || printf 'systemd not found, create your own init file!'
+cp ./os_bin/* /usr/lib/systemd/system/scoutd.service || exit 1
 
 touch $APP_DIR/engine.conf
 echo '[global]' > $APP_DIR/engine.conf
