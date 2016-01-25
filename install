@@ -2,7 +2,7 @@
 
 # run as root
 if [ $USER != 'root' ]; then
-    printf 'You must be root!'
+    echo 'You must be root!'
 fi
 
 node -e "console.log('node installed, continuing...')" || exit 1
@@ -37,6 +37,6 @@ echo '' > /var/log/engined.log
 cd $APP_DIR
 npm install || exit 1
 
-printf 'Completed install.'
-printf 'To enable: systemctl enable engined'
-printf 'To start: systemcl start engined'
+echo 'Completed install.'
+echo 'To enable: systemctl enable engined'
+echo 'To start: systemcl start engined'
