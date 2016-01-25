@@ -5,6 +5,8 @@ if [ $USERNAME != 'root' ]; then
     printf 'You must be root!'
 fi
 
+node -e "console.log('node installed, continuing...')" || printf 'node is not installed, this will not work!' && exit 1
+
 APP_DIR=/etc/engine
 
 mkdir $APP_DIR
@@ -31,6 +33,9 @@ echo 'logpath=engin' >> $APP_DIR/engine.conf
 
 touch /var/log/engined.log
 echo '' > /var/log/engined.log
+
+cd $APP_DIR
+npm install || printf 'npm not installed, this will not work!' && exit 1
 
 printf 'Completed install.'
 printf 'To enable: systemctl enable engined'
