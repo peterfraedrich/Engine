@@ -111,6 +111,32 @@ Returns:
 }
 ```
 
+##### Creating a new upstream pool
+```
+Pool to create:          app1
+API key:                abcd1234
+
+Command:
+$> curl http://nginx01.foo.com/upstream/create?upstream=app1&key=abcd1234
+[OK] Engine created new upstream pool app1
+```
+
+##### Deleting an existing upstream pool
+```
+Pool to delete:         old_login
+API key:                abcd1234
+
+Command:
+$> curl http://nginx01.foo.com/upstream/destroy?upstream=old_login&key=abcd1234
+[OK] Engine destroyed the upstream pool old_login
+```
+
+### Known Bugs
+* For some reason you can't delete an upstream pool with no members. A temporary workaround is to add a random server to the pool then delete the upstream.
+* For some reason if there's only 1 server in a pool, and you try to add the same server again, it doesn't see that the server already exists and will add a duplicate. Annoying.
+* I'm not sure but I think stuff keeps disappearing from the `nginx.conf`. I need to do more testing.
+
+
 ##### Misc. Notes
 * The `robot` URL query parameter tells the API to return confirmations in the form of HTTP status codes (ie, `200` for sucess) instead of text. This is designed to be used with scripts to avoid having to parse a text response.
 * You can send extra query params, but they won't do anything.
@@ -122,3 +148,12 @@ Returns:
 `Because. Really, though, all it's there to do is ensure something like a URL scanner or the intern don't mess things up.`
 * Is this it?
 `No, jerk, this isn't all I'm doing. I'm working on the rest of the crap too. But, you know, I have a day job.`
+
+#### ACK
+`Engine` uses generally awesome open source software from these fine people:
+* nginx-conf ([MIT](https://opensource.org/licenses/MIT)) -- https://github.com/tmont/nginx-conf
+* Express ([MIT](https://opensource.org/licenses/MIT)) -- https://github.com/strongloop/express
+* node-uuid ([MIT](https://opensource.org/licenses/MIT)) -- https://github.com/broofa/node-uuid
+* errorhandler ([MIT](https://opensource.org/licenses/MIT)) -- https://github.com/expressjs/errorhandler
+* method-override ([MIT](https://opensource.org/licenses/MIT)) -- https://github.com/expressjs/method-override
+* ini ([ISC](https://opensource.org/licenses/ISC)) -- https://github.com/isaacs/ini
