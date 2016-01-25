@@ -148,9 +148,13 @@ $> curl http://nginx01.foo.com:5000/upstream/destroy?upstream=old_login&key=abcd
 
 #### ACK
 `Engine` uses generally awesome open source software from these fine people:
-* nginx-conf ([MIT](https://opensource.org/licenses/MIT)) -- https://github.com/tmont/nginx-conf
-* Express ([MIT](https://opensource.org/licenses/MIT)) -- https://github.com/strongloop/express
-* node-uuid ([MIT](https://opensource.org/licenses/MIT)) -- https://github.com/broofa/node-uuid
-* errorhandler ([MIT](https://opensource.org/licenses/MIT)) -- https://github.com/expressjs/errorhandler
-* method-override ([MIT](https://opensource.org/licenses/MIT)) -- https://github.com/expressjs/method-override
+* nginx-conf ([MIT](http://choosealicense.com/licenses/mit/)) -- https://github.com/tmont/nginx-conf
+* Express ([MIT](http://choosealicense.com/licenses/mit/)) -- https://github.com/strongloop/express
+* node-uuid ([MIT](http://choosealicense.com/licenses/mit/)) -- https://github.com/broofa/node-uuid
+* errorhandler ([MIT](http://choosealicense.com/licenses/mit/)) -- https://github.com/expressjs/errorhandler
+* method-override ([MIT](http://choosealicense.com/licenses/mit/)) -- https://github.com/expressjs/method-override
 * ini ([ISC](https://opensource.org/licenses/ISC)) -- https://github.com/isaacs/ini
+
+### License
+
+[MPL 2.0](http://choosealicense.com/licenses/mpl-2.0/)
