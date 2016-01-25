@@ -1,10 +1,11 @@
 {
   "name": "Engine",
   "version": "1.0.0",
-  "description": "a REST API for nginx ",
-  "main": "engined.js",
+  "description": "the nginx RESTful API",
+  "main": "engine.js",
   "scripts": {
-    "test": "nodemon engined.js"
+    "test": "nodemon engine.js",
+    "start": "node engine.js"
   },
   "repository": {
     "type": "git",
