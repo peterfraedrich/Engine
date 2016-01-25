@@ -1,0 +1,18 @@
+[Unit]
+Description=ENGINE, the Nginx RESTful API
+After=syslog.target
+After=network.target
+After=nginx.service
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/etc/engined
+ExecStart=/etc/engined/npm start
+
+# Give a reasonable amount of time for the server to start up/shut down
+TimeoutSec=300
+
+[Install]
+WantedBy=multi-user.target
