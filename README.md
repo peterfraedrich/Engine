@@ -1,4 +1,4 @@
-# ENGINE
+![Engine](https://www.iconfinder.com/icons/174600/download/png/128)# ENGINE
 *The nginx REST API you deserve.*
 
 #### So what does it do?
