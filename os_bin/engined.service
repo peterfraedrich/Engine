@@ -9,7 +9,7 @@ Type=simple
 User=root
 Group=root
 WorkingDirectory=/etc/engined
-ExecStart=/etc/engined/npm start
+ExecStart=/usr/bin/node /etc/engine/engine.js
 
 # Give a reasonable amount of time for the server to start up/shut down
 TimeoutSec=300
